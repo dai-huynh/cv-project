@@ -1,25 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Form from "./components/Form/Form";
+import Preview from "./components/Preview";
 
-function App() {
+const App = () => {
+  const [personal, setPersonal] = useState({
+    name: "pinkToot",
+    address: "The Mall",
+    phone: "646-384-9341",
+    email: "hi@gmail.com",
+    github: "github.com/PinkTooty",
+  });
+  const [skills, setSkills] = useState([
+    "Eating",
+    "Sleeping",
+    "Pooping",
+  ]);
+  const [education, setEducation] = useState([
+    {
+      school: "Harvard",
+      major: "Computer Science",
+      date: "Class of 2026",
+    },
+    {
+      school: "Pre School",
+      major: "Biology",
+      date: "Class of 2006",
+    },
+  ]);
+  const [experience, setExperience] = useState([
+    {
+      company: "Basement Dweller",
+      position: "Intern Lead",
+      tasks: ["nothing", "eating"],
+      date: "2004-2022",
+    },
+    {
+      company: "McDonalds",
+      position: "Tech Lead",
+      tasks: ["nothing", "cleaned bathrooms"],
+      date: "2016-2017",
+    },
+  ]);
+
+  // Change Personal
+  const updatePersonal = (key, value) => {
+    setPersonal({ ...personal, [key]: value });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Form personal={personal} updatePersonal={updatePersonal} />
+      <Preview
+        personal={personal}
+        skills={skills}
+        education={education}
+        experience={experience}
+      />
     </div>
   );
-}
+};
 
 export default App;

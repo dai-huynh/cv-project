@@ -1,19 +1,23 @@
 import React, { useState } from "react";
-import Form from "./components/Form/Form";
 import Preview from "./components/Preview";
-
+import Form from "./components/form/Form";
 const App = () => {
   const [personal, setPersonal] = useState({
     name: "pinkToot",
     address: "The Mall",
     phone: "646-384-9341",
     email: "hi@gmail.com",
-    github: "github.com/PinkTooty",
+    github: "github.com/dai-huynh",
   });
   const [skills, setSkills] = useState([
-    "Eating",
-    "Sleeping",
-    "Pooping",
+    {
+      skill: "eating",
+      description: "eating food",
+    },
+    {
+      skill: "pooping",
+      description: "eating foodd",
+    },
   ]);
   const [education, setEducation] = useState([
     {
@@ -31,25 +35,56 @@ const App = () => {
     {
       company: "Basement Dweller",
       position: "Intern Lead",
-      tasks: ["nothing", "eating"],
+      task: "doing nothing",
       date: "2004-2022",
     },
     {
-      company: "McDonalds",
+      company: "McDonald's",
       position: "Tech Lead",
-      tasks: ["nothing", "cleaned bathrooms"],
+      task: "nothing",
       date: "2016-2017",
     },
   ]);
 
-  // Change Personal
-  const updatePersonal = (key, value) => {
+  // Delete Input
+  const deleteInput = (id, data, setData) => {
+    const copy = { ...data };
+    delete copy[id];
+    setData({ ...copy });
+  };
+
+  // Update Personal
+  const updatePersonal = (key, value = "") => {
     setPersonal({ ...personal, [key]: value });
   };
 
+  // Update Skills
+  const updateSkills = (key, value = "") => {
+    setSkills({ ...skills, [key]: value });
+  };
+
+  // Update Education
+
+  // Update Experience
+
   return (
     <div className="container">
-      <Form personal={personal} updatePersonal={updatePersonal} />
+      <form className="form-container general">
+        <Form
+          data={personal}
+          updateData={updatePersonal}
+          deleteInput={deleteInput}
+          setter={setPersonal}
+        />
+      </form>
+      <form className="form-container skills">
+        <Form
+          data={skills}
+          updateData={updateSkills}
+          deleteInput={deleteInput}
+          setter={setSkills}
+        />
+      </form>
       <Preview
         personal={personal}
         skills={skills}

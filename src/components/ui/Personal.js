@@ -1,13 +1,11 @@
-const Personal = ({ data }) => {
+import Detail from "./Detail";
+
+const Personal = ({ personal }) => {
   return (
     <div className="personal-tab">
-      <ul>
-        <li>{data.name}</li>
-        <li>{data.address}</li>
-        <li>{data.phone}</li>
-        <li>{data.email}</li>
-        <li>{data.github}</li>
-      </ul>
+      {Object.keys(personal).map((key) => {
+        return <Detail key={key} id={key} data={personal} />;
+      })}
     </div>
   );
 };

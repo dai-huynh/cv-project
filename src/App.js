@@ -1,97 +1,101 @@
 import React, { useState } from "react";
-import Preview from "./components/Preview";
-import Form from "./components/form/Form";
+import General from "./components/General";
+
+// you want to create an id for each obj so it is easily searched
+
 const App = () => {
-  const [personal, setPersonal] = useState({
-    name: "pinkToot",
-    address: "The Mall",
-    phone: "646-384-9341",
-    email: "hi@gmail.com",
-    github: "github.com/dai-huynh",
-  });
-  const [skills, setSkills] = useState([
+  const [general, setGeneral] = useState([
     {
-      skill: "eating",
-      description: "eating food",
+      name: "Joe",
+      active: false,
     },
     {
-      skill: "pooping",
-      description: "eating foodd",
-    },
-  ]);
-  const [education, setEducation] = useState([
-    {
-      school: "Harvard",
-      major: "Computer Science",
-      date: "Class of 2026",
+      title: "Software Developer",
+      active: false,
     },
     {
-      school: "Pre School",
-      major: "Biology",
-      date: "Class of 2006",
+      phone: "123-456-7890",
+      active: false,
+    },
+    {
+      email: "joe@gmail.com",
+      active: false,
+    },
+    {
+      address: "704 Hauser St., New York, N.Y.",
+      active: false,
+    },
+    {
+      description: "Aspiring Software Developer",
+      active: false,
     },
   ]);
-  const [experience, setExperience] = useState([
+  const [skills, setSkill] = useState([
     {
-      company: "Basement Dweller",
-      position: "Intern Lead",
-      task: "doing nothing",
-      date: "2004-2022",
+      skill: "ReactJS",
+      description: "built web applications",
     },
     {
-      company: "McDonald's",
-      position: "Tech Lead",
-      task: "nothing",
-      date: "2016-2017",
+      skill: "JavaScript",
+      description: "built web applications",
+    },
+  ]);
+  const [education, setEdu] = useState([
+    {
+      attended: "Stanford University",
+      degree: "Computer Science",
+      subject: "Introduction to Computer Science",
+      from: "2000",
+      to: "2002",
+    },
+    {
+      attended: "Harvard",
+      degree: "Computer Science",
+      subject: "Data Structures and Algorithms",
+      from: "2006",
+      to: "208",
+    },
+  ]);
+  const [experience, setExp] = useState([
+    {
+      company: "Barnes and Noble",
+      city: "New york",
+      from: "2002",
+      to: "2005",
+      role: "Junior Developer",
+      description: "",
+    },
+    {
+      company: "MongoDB",
+      city: "New York",
+      from: "2006",
+      to: "2010",
+      role: "Senior Developer",
+      description: "",
     },
   ]);
 
-  // Delete Input
-  const deleteInput = (id, data, setData) => {
-    const copy = { ...data };
-    delete copy[id];
-    setData({ ...copy });
+  const toggleGeneral = (keyNode) => {
+    const key = keyNode.dataset.detailName;
+    const copy = general;
+    const index = general.findIndex((obj) => obj[key]);
+    copy[index].active = !copy[index].active;
+    setGeneral([...copy]);
   };
 
-  // Update Personal
-  const updatePersonal = (key, value = "") => {
-    setPersonal({ ...personal, [key]: value });
+  const editGeneral = (key, value) => {
+    const copy = general;
+    const index = general.findIndex((obj) => obj[key]);
+    copy[index][key] = value;
+    setGeneral([...copy]);
   };
-
-  // Update Skills
-  const updateSkills = (key, value = "") => {
-    setSkills({ ...skills, [key]: value });
-  };
-
-  // Update Education
-
-  // Update Experience
 
   return (
-    <div className="container">
-      <form className="form-container general">
-        <Form
-          data={personal}
-          updateData={updatePersonal}
-          deleteInput={deleteInput}
-          setter={setPersonal}
-        />
-      </form>
-      <form className="form-container skills">
-        <Form
-          data={skills}
-          updateData={updateSkills}
-          deleteInput={deleteInput}
-          setter={setSkills}
-        />
-      </form>
-      <Preview
-        personal={personal}
-        skills={skills}
-        education={education}
-        experience={experience}
-      />
-    </div>
+    <General
+      general={general}
+      toggleGeneral={toggleGeneral}
+      editGeneral={editGeneral}
+    />
   );
 };
 

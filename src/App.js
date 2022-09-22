@@ -1,33 +1,22 @@
 import React, { useState } from "react";
-import General from "./components/General";
-
-// you want to create an id for each obj so it is easily searched
+import Detail from "./components/Detail";
 
 const App = () => {
   const [general, setGeneral] = useState([
     {
       name: "Joe",
-      active: false,
     },
     {
       title: "Software Developer",
-      active: false,
-    },
-    {
-      phone: "123-456-7890",
-      active: false,
     },
     {
       email: "joe@gmail.com",
-      active: false,
     },
     {
-      address: "704 Hauser St., New York, N.Y.",
-      active: false,
+      phone: "123-456-7890",
     },
     {
-      description: "Aspiring Software Developer",
-      active: false,
+      linkedIn: "// joe",
     },
   ]);
   const [skills, setSkill] = useState([
@@ -53,7 +42,7 @@ const App = () => {
       degree: "Computer Science",
       subject: "Data Structures and Algorithms",
       from: "2006",
-      to: "208",
+      to: "2008",
     },
   ]);
   const [experience, setExp] = useState([
@@ -75,27 +64,42 @@ const App = () => {
     },
   ]);
 
-  const toggleGeneral = (keyNode) => {
-    const key = keyNode.dataset.detailName;
+  const editGeneral = (index, key, value) => {
     const copy = general;
-    const index = general.findIndex((obj) => obj[key]);
-    copy[index].active = !copy[index].active;
-    setGeneral([...copy]);
-  };
-
-  const editGeneral = (key, value) => {
-    const copy = general;
-    const index = general.findIndex((obj) => obj[key]);
     copy[index][key] = value;
     setGeneral([...copy]);
   };
 
+  const editSkills = (index, key, value) => {
+    const copy = skills;
+    copy[index][key] = value;
+    setSkill([...copy]);
+  };
+
+  const editEducation = (index, key, value) => {
+    const copy = education;
+    copy[index][key] = value;
+    setEdu([...copy]);
+  };
+
+  const editExperience = (index, key, value) => {
+    const copy = experience;
+    copy[index][key] = value;
+    setExp([...copy]);
+  };
+
   return (
-    <General
-      general={general}
-      toggleGeneral={toggleGeneral}
-      editGeneral={editGeneral}
-    />
+    <div className="container">
+      dbl click to edit
+      <Detail type={"general"} details={general} editFnc={editGeneral} />
+      <Detail type={"skills"} details={skills} editFnc={editSkills} />
+      <Detail type={"education"} details={education} editFnc={editEducation} />
+      <Detail
+        type={"experience"}
+        details={experience}
+        editFnc={editExperience}
+      />
+    </div>
   );
 };
 

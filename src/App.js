@@ -67,7 +67,7 @@ const App = () => {
 
   const changePreview = () => {
     setIsPreview(!isPreview);
-    const btns = document.querySelectorAll(".add, .delete");
+    const btns = document.querySelectorAll(".add, .delete, form ");
     btns.forEach((btn) => {
       return btn.classList.contains("hidden")
         ? btn.classList.remove("hidden")
@@ -116,7 +116,6 @@ const App = () => {
 
   return (
     <div className="container">
-      dbl click to edit
       <button className="togglePrev" onClick={() => changePreview()}>
         Preview
       </button>

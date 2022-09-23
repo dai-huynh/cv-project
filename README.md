@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+[Preview](https://dai-huynh.github.io/cv-project/)
+
 ## Learning Outcomes
 
 This side project is intended to facilitate my knowledge of React fundamentals. Project idea from https://theodinproject.com

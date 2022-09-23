@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import Detail from "./components/Detail";
+import Details from "./components/Details";
 
 const App = () => {
+  const [isPreview, setIsPreview] = useState(false);
   const [general, setGeneral] = useState([
     {
       name: "Joe",
@@ -64,11 +65,23 @@ const App = () => {
     },
   ]);
 
+  const changePreview = () => {
+    setIsPreview(!isPreview);
+    const btns = document.querySelectorAll(".add, .delete");
+    btns.forEach((btn) => {
+      return btn.classList.contains("hidden")
+        ? btn.classList.remove("hidden")
+        : btn.classList.add("hidden");
+    });
+  };
+
   const editGeneral = (index, key, value) => {
     const copy = general;
     copy[index][key] = value;
     setGeneral([...copy]);
   };
+
+  const addSkill = (skill) => setSkill([...skills, skill]);
 
   const editSkills = (index, key, value) => {
     const copy = skills;
@@ -76,11 +89,21 @@ const App = () => {
     setSkill([...copy]);
   };
 
+  const delSkill = (index) =>
+    setSkill(skills.filter((skill) => skills.indexOf(skill) !== index));
+
+  const addEducation = (edu) => setEdu([...education, edu]);
+
   const editEducation = (index, key, value) => {
     const copy = education;
     copy[index][key] = value;
     setEdu([...copy]);
   };
+
+  const delEducation = (index) =>
+    setEdu(education.filter((edu) => education.indexOf(edu) !== index));
+
+  const addExperience = (exp) => setExp([...experience, exp]);
 
   const editExperience = (index, key, value) => {
     const copy = experience;
@@ -88,17 +111,45 @@ const App = () => {
     setExp([...copy]);
   };
 
+  const delExperience = (index) =>
+    setExp(experience.filter((exp) => experience.indexOf(exp) !== index));
+
   return (
     <div className="container">
       dbl click to edit
-      <Detail type={"general"} details={general} editFnc={editGeneral} />
-      <Detail type={"skills"} details={skills} editFnc={editSkills} />
-      <Detail type={"education"} details={education} editFnc={editEducation} />
-      <Detail
-        type={"experience"}
-        details={experience}
-        editFnc={editExperience}
-      />
+      <button className="togglePrev" onClick={() => changePreview()}>
+        Preview
+      </button>
+      <div className="general-container">
+        <Details type={"general"} details={general} editFnc={editGeneral} />
+      </div>
+      <div className="skills-container">
+        <Details
+          type={"skills"}
+          details={skills}
+          addFnc={addSkill}
+          editFnc={editSkills}
+          delFnc={delSkill}
+        />
+      </div>
+      <div className="education-container">
+        <Details
+          type={"education"}
+          details={education}
+          addFnc={addEducation}
+          editFnc={editEducation}
+          delFnc={delEducation}
+        />
+      </div>
+      <div className="experience-container">
+        <Details
+          type={"experience"}
+          details={experience}
+          addFnc={addExperience}
+          editFnc={editExperience}
+          delFnc={delExperience}
+        />
+      </div>
     </div>
   );
 };

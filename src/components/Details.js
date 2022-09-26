@@ -6,6 +6,7 @@ import DelDetail from "./DelDetail";
 // in detail
 // because general doesn't have an addFnc, don't create add/del btns
 // need to have at least one detail obj in state to refer to
+// could just manually pass in key names into props
 
 const Details = ({ details, addFnc, editFnc, delFnc }) => {
   return addFnc && details.length > 1 ? (
@@ -17,6 +18,7 @@ const Details = ({ details, addFnc, editFnc, delFnc }) => {
         </div>
       ))}
       <AddDetail details={Object.keys(details[0])} addFnc={addFnc} />
+      <div className="line-break"></div>
     </>
   ) : (
     <>
@@ -26,6 +28,7 @@ const Details = ({ details, addFnc, editFnc, delFnc }) => {
         </div>
       ))}
       <AddDetail details={Object.keys(details[0])} addFnc={addFnc} />
+      <div className="line-break"></div>
     </>
   );
 };

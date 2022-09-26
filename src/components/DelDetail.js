@@ -1,8 +1,8 @@
+import { FiTrash2 } from "react-icons/fi";
+
 const DelDetail = ({ delFnc, index }) => {
   return (
-    <div className="btn delete" onClick={() => delFnc(index)}>
-      X
-    </div>
+    <FiTrash2 className="btn delete" onClick={() => delFnc(index)}></FiTrash2>
   );
 };
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FiCheck } from "react-icons/fi";
 
 // if user is editing, replace text with an input to allow user
 // to edit
@@ -23,11 +24,11 @@ const NewDetail = ({ index, detailName, detailVal, editFnc }) => {
         value={detailVal}
         onChange={(e) => editFnc(index, detailName, e.target.value)}
       />
-      <span onClick={() => toggleEdit()}>+</span>
+      <FiCheck onClick={() => toggleEdit()}>+</FiCheck>
     </form>
   ) : (
     <div className={`detail ${detailName}`}>
-      <h1 onDoubleClick={() => toggleEdit()}>{detailVal}</h1>
+      <div onClick={() => toggleEdit()}>{detailVal}</div>
     </div>
   );
 };

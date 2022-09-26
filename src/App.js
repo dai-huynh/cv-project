@@ -1,74 +1,58 @@
 import React, { useState } from "react";
 import Details from "./components/Details";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+
 const App = () => {
   const [isPreview, setIsPreview] = useState(false);
   const [general, setGeneral] = useState([
     {
-      name: "Joe",
+      name: "Name",
     },
     {
-      title: "Software Developer",
+      title: "Title",
     },
     {
-      email: "joe@gmail.com",
+      email: "email@email.com",
     },
     {
       phone: "123-456-7890",
     },
     {
-      linkedIn: "// joe",
+      linkedIn: "// username",
     },
   ]);
   const [education, setEdu] = useState([
     {
-      attended: "Stanford University",
-      degree: "Computer Science",
-      subject: "Introduction to Computer Science",
-      from: "2000",
-      to: "2002",
-    },
-    {
-      attended: "Harvard",
-      degree: "Computer Science",
-      subject: "Data Structures and Algorithms",
-      from: "2006",
-      to: "2008",
+      attended: "School",
+      degree: "Degree",
+      subject: "Subject",
+      from: "From",
+      to: "To",
     },
   ]);
   const [projects, setProj] = useState([
     {
       name: "PROJECT NAME",
-      description: "Description...",
       link: "https://projectlink.com",
+      description: "Description...",
     },
   ]);
   const [experience, setExp] = useState([
     {
-      company: "Barnes and Noble",
-      city: "New york",
-      from: "2002",
-      to: "2005",
-      role: "Junior Developer",
-      description: "",
-    },
-    {
-      company: "MongoDB",
-      city: "New York",
-      from: "2006",
-      to: "2010",
-      role: "Senior Developer",
-      description: "",
+      company: "Company",
+      location: "Location",
+      role: "Role",
+      description: "Description",
+      from: "From",
+      to: "To",
     },
   ]);
 
   const [skills, setSkill] = useState([
     {
-      skill: "ReactJS",
-      description: "built web applications",
-    },
-    {
-      skill: "JavaScript",
-      description: "built web applications",
+      skill: "Skill",
+      description: "Description",
     },
   ]);
 
@@ -134,15 +118,15 @@ const App = () => {
     setSkill(skills.filter((skill) => skills.indexOf(skill) !== index));
 
   return (
-    <>
+    <Container maxWidth="md">
       <header className="header-container">
         <h1>Resume Builder</h1>
-        <button
+        <Button
           className="toggle-prev"
           onClick={(e) => changePreview(e.target)}
         >
           Preview
-        </button>
+        </Button>
       </header>
       <div className="cv-container">
         <div className="general-container">
@@ -189,7 +173,7 @@ const App = () => {
           />
         </div>
       </div>
-    </>
+    </Container>
   );
 };
 

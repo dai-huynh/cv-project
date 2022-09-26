@@ -11,10 +11,15 @@ The project showcases an understanding of the following tools and languages:
 
 - HTML
 - CSS
+- Material UI
 - JavaScript
 - ReactJS (state and props management)
 
 ## Getting Started
+
+To add a new detail, click the + icon under each detail.
+
+To edit, simply click on the text.
 
 In the project directory, you can run:
 

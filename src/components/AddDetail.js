@@ -1,7 +1,7 @@
 import { useState } from "react";
-import AddDetailInput from "./AddDetailInput";
+import { Button } from "@mui/material";
 import { FiPlus } from "react-icons/fi";
-import { MdOutlineCancel } from "react-icons/md";
+import AddDetailInput from "./AddDetailInput";
 
 const AddDetail = ({ details, addFnc }) => {
   const [isAdding, setIsAdding] = useState(false);
@@ -16,15 +16,16 @@ const AddDetail = ({ details, addFnc }) => {
   };
 
   return isAdding ? (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form onSubmit={(e) => handleSubmit(e)} className="form-control add">
       {details.map((detail) => (
         <AddDetailInput key={detail} detail={detail} />
       ))}
-      <button type="submit">submit</button>
-      <MdOutlineCancel
-        className="btn cancel"
-        onClick={() => setAdding()}
-      ></MdOutlineCancel>
+      <Button variant="contained" type="submit">
+        Submit
+      </Button>
+      <Button className="btn cancel" onClick={() => setAdding()}>
+        Cancel
+      </Button>
     </form>
   ) : (
     <FiPlus className="btn add" onClick={() => setAdding()}></FiPlus>

@@ -1,5 +1,14 @@
+import { TextField } from "@mui/material";
+
 const AddDetailInput = ({ detail }) => {
-  return <input placeholder={detail} name={detail} />;
+  return (
+    <TextField
+      required
+      id="outlined-required"
+      placeholder={detail}
+      name={detail}
+    />
+  );
 };
 
 export default AddDetailInput;

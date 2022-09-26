@@ -1,8 +1,10 @@
-import { FiTrash2 } from "react-icons/fi";
+import { Button } from "@mui/material";
 
 const DelDetail = ({ delFnc, index }) => {
   return (
-    <FiTrash2 className="btn delete" onClick={() => delFnc(index)}></FiTrash2>
+    <Button className="btn delete" onClick={() => delFnc(index)}>
+      Delete
+    </Button>
   );
 };
 
